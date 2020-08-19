@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaGithubAlt, FaSearch } from 'react-icons/fa';
+import { FaGithubAlt, FaSearch, FaFolderOpen, FaStar } from 'react-icons/fa';
 
 export const Container = styled.div`
   display: flex;
@@ -57,14 +57,77 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const TextButon = styled.strong`
-  flex: 1;
-  margin-left: 18px;
-  color: #fff;
-`;
-
 export const IconButton = styled(FaSearch)`
   color: #fff;
   width: 16px;
   height: 16px;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 16px 16px 0 16px;
+`;
+
+export const StarsButton = styled.button`
+  width: 150px;
+  height: 40px;
+  margin-left: 2px;
+  background-color: #ffbf00;
+  border-radius: 4px;
+  border: 1px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  &:hover {
+    background: #f6d314;
+  }
+`;
+
+export const ReposButton = styled.button`
+  width: 150px;
+  height: 40px;
+  margin-right: 2px;
+  background-color: #0366d6;
+  border-radius: 4px;
+  border: 1px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  &:hover {
+    background: #0359bb;
+  }
+`;
+
+export const IconRepos = styled(FaFolderOpen)`
+  color: #fff;
+  width: 15px;
+  height: 15px;
+`;
+
+export const IconStarred = styled(FaStar)`
+  color: #fff;
+  width: 15px;
+  height: 15px;
+`;
+
+export const TextButton = styled.strong`
+  margin-left: 4px;
+  color: #fff;
+`;
+
+export const ListUL = styled.ul`
+  list-style-type: none;
+`;
+
+export const List = styled.li`
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+`;
+
+export const Link = styled.a``;
