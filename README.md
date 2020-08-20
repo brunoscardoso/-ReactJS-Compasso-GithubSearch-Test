@@ -22,4 +22,4 @@ Depois que terminar a instalação é só rodar um dos comandos abaixo:
 Demonstração:
 
 ### `Consulta`
-![gif](https://media.giphy.com/media/U3Jk2mheSmDJ1PyjfO/source.mp4)
+![gif](https://giphy.com/embed/U3Jk2mheSmDJ1PyjfO)
