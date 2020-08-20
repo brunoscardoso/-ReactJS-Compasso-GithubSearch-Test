@@ -17,7 +17,6 @@ import {
   IconStarred,
   ListUL,
   List,
-  Link,
 } from './styles';
 
 import api from '../../services/api';
@@ -34,6 +33,7 @@ interface ReposArray {
   id: number;
   name: string;
   html_url: string;
+  language: string;
 }
 
 interface StarsArray {
@@ -103,11 +103,13 @@ const Home: React.FC = () => {
       {!repos ? null : (
         <ListUL>
           {repos.map((repo) => (
-            <Link key={repo.id} href={repo.html_url} target="_blank">
-              <List>
-                <CardRepo name={repo.name} />
-              </List>
-            </Link>
+            <List key={repo.id}>
+              <CardRepo
+                name={repo.name}
+                language={repo.language}
+                url={repo.html_url}
+              />
+            </List>
           ))}
         </ListUL>
       )}

@@ -72,7 +72,7 @@ export const ButtonContainer = styled.div`
 export const StarsButton = styled.button`
   width: 150px;
   height: 40px;
-  margin-left: 2px;
+  margin: 0 0 16px 2px;
   background-color: #ffbf00;
   border-radius: 4px;
   border: 1px;
@@ -89,7 +89,7 @@ export const StarsButton = styled.button`
 export const ReposButton = styled.button`
   width: 150px;
   height: 40px;
-  margin-right: 2px;
+  margin: 0 2px 16px 0;
   background-color: #0366d6;
   border-radius: 4px;
   border: 1px;
