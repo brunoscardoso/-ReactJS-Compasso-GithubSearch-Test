@@ -17,6 +17,9 @@ import {
   IconStarred,
   ListUL,
   List,
+  ReposContainer,
+  StarredsContainer,
+  ListContainer,
 } from './styles';
 
 import api from '../../services/api';
@@ -37,7 +40,10 @@ interface ReposArray {
 }
 
 interface StarsArray {
+  id: number;
   name: string;
+  html_url: string;
+  language: string;
 }
 
 const Home: React.FC = () => {
@@ -45,8 +51,12 @@ const Home: React.FC = () => {
   const [user, setUser] = useState<UserObject>();
   const [repos, setRepos] = useState<ReposArray[]>([]);
   const [starreds, setStarreds] = useState<StarsArray[]>([]);
+  const [showRepos, setShowRepos] = useState(false);
+  const [showStarreds, setShowStarreds] = useState(false);
 
   async function handleSearchUsers(): Promise<void> {
+    setShowStarreds(false);
+    setShowRepos(false);
     const response = await api.get(`/${github}`);
     setUser(response.data);
   }
@@ -58,12 +68,15 @@ const Home: React.FC = () => {
   async function handleRepos(): Promise<void> {
     const response = await api.get(`/${github}/repos`);
     setRepos(response.data);
-    console.log(response.data);
+    setShowStarreds(false);
+    setShowRepos(true);
   }
 
   async function handleStarreds(): Promise<void> {
     const response = await api.get(`/${github}/starred`);
     setStarreds(response.data);
+    setShowRepos(false);
+    setShowStarreds(true);
   }
 
   return (
@@ -99,20 +112,39 @@ const Home: React.FC = () => {
           </ButtonContainer>
         </Container>
       )}
+      <ListContainer>
+        {showRepos === true ? (
+          <ReposContainer>
+            <ListUL>
+              {repos.map((repo) => (
+                <List key={repo.id}>
+                  <CardRepo
+                    name={repo.name}
+                    language={repo.language}
+                    url={repo.html_url}
+                  />
+                </List>
+              ))}
+            </ListUL>
+          </ReposContainer>
+        ) : null}
 
-      {!repos ? null : (
-        <ListUL>
-          {repos.map((repo) => (
-            <List key={repo.id}>
-              <CardRepo
-                name={repo.name}
-                language={repo.language}
-                url={repo.html_url}
-              />
-            </List>
-          ))}
-        </ListUL>
-      )}
+        {showStarreds === true ? (
+          <StarredsContainer>
+            <ListUL>
+              {starreds.map((star) => (
+                <List key={star.id}>
+                  <CardRepo
+                    name={star.name}
+                    language={star.language}
+                    url={star.html_url}
+                  />
+                </List>
+              ))}
+            </ListUL>
+          </StarredsContainer>
+        ) : null}
+      </ListContainer>
     </Container>
   );
 };

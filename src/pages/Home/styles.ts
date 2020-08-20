@@ -120,6 +120,17 @@ export const TextButton = styled.strong`
   color: #fff;
 `;
 
+export const ListContainer = styled.div`
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 16px 0 0 0;
+`;
+
+export const ReposContainer = styled.div``;
+
+export const StarredsContainer = styled.div``;
+
 export const ListUL = styled.ul`
   list-style-type: none;
 `;

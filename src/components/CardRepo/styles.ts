@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px;
-  margin-top: 8px;
+  margin: 16px 8px 0 16px;
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
@@ -36,6 +36,7 @@ export const InfosContainer = styled.div`
 export const IconLanguage = styled.span`
   width: 12px;
   height: 12px;
+  margin-right: 4px;
   position: relative;
   top: 1px;
   display: inline-block;
