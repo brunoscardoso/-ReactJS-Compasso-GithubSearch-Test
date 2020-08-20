@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
 import {
   Header,
   Logo,
@@ -21,6 +22,8 @@ import {
   StarredsContainer,
   ListContainer,
 } from './styles';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import api from '../../services/api';
 import CardUser from '../../components/CardUser';
@@ -51,14 +54,30 @@ const Home: React.FC = () => {
   const [user, setUser] = useState<UserObject>();
   const [repos, setRepos] = useState<ReposArray[]>([]);
   const [starreds, setStarreds] = useState<StarsArray[]>([]);
+  const [showUser, setShowUser] = useState(false);
   const [showRepos, setShowRepos] = useState(false);
   const [showStarreds, setShowStarreds] = useState(false);
 
   async function handleSearchUsers(): Promise<void> {
+    setShowUser(false);
     setShowStarreds(false);
     setShowRepos(false);
-    const response = await api.get(`/${github}`);
-    setUser(response.data);
+    try {
+      const response = await api.get(`/${github}`);
+      setUser(response.data);
+      setShowUser(true);
+    } catch (e) {
+      console.error(e);
+      toast.error('User not found or some error found', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -84,6 +103,7 @@ const Home: React.FC = () => {
       <Header>
         <Logo />
         <TitleText>GitHubSearch</TitleText>
+        <ToastContainer />
       </Header>
 
       <SearchContainer>
@@ -93,13 +113,15 @@ const Home: React.FC = () => {
         </SearchButton>
       </SearchContainer>
 
-      {!user ? null : (
+      {showUser === true ? (
         <Container>
-          <CardUser
-            name={user.name}
-            photoUrl={user.avatar_url}
-            bio={user.bio}
-          />
+          {!user ? null : (
+            <CardUser
+              name={user.name}
+              photoUrl={user.avatar_url}
+              bio={user.bio}
+            />
+          )}
           <ButtonContainer>
             <ReposButton onClick={handleRepos}>
               <IconRepos />
@@ -111,7 +133,7 @@ const Home: React.FC = () => {
             </StarsButton>
           </ButtonContainer>
         </Container>
-      )}
+      ) : null}
       <ListContainer>
         {showRepos === true ? (
           <ReposContainer>
