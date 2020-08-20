@@ -19,7 +19,5 @@ Depois que terminar a instalação é só rodar um dos comandos abaixo:
 
 `yarn start`
 
-Demonstração:
-
-### `Consulta`
-![gif](https://giphy.com/embed/U3Jk2mheSmDJ1PyjfO)
+### `Demonstração:`
+![gif](https://media2.giphy.com/media/U3Jk2mheSmDJ1PyjfO/giphy.gif)
