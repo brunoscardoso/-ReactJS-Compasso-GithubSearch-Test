@@ -9,7 +9,7 @@ Prettier;
 
 ### Instruções:
 
-`git clone https://github.com/brunoscardoso/-ReactJS-Compasso-GithubSearch-Test fronted`
+`git clone https://github.com/brunoscardoso/-ReactJS-Compasso-GithubSearch-Test frontend`
 
 `cd frontend`
 
